@@ -12,7 +12,14 @@ export class CopyButtonComponent implements OnInit {
   ngOnInit(): void {}
 
   copyText(): void {
-    navigator.clipboard.writeText(this.value);
-    alert('Copied the text: ' + this.value);
+    navigator.clipboard
+      .writeText(this.value)
+      .then(() => alert('Copied the text: ' + this.value));
+  }
+
+  copyTextAgain(): void {
+    const textarea = document.getElementById('textarea') as HTMLInputElement;
+    textarea?.select();
+    document.execCommand('copy');
   }
 }
